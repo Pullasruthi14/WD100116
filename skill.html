@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background:  no-repeat center center/cover;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        header {
+            background-color: #333;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            padding: 0;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #ff6600;
+        }
+
+        /* Home Section */
+        #home {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+        }
+        #home h1 {
+            font-weight: bold;
+            font-size: 36px;
+            margin: 0;
+            color: black;
+        }
+        #home img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 5px solid black;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Skills Section */
+        #skills {
+            background-color: #f4f4f9;
+            padding: 40px;
+            margin-top: 20px;
+        }
+        .skill-heading {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .skills-list {
+            font-size: 18px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <header>
+        <nav>
+            <ul>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home">
+        <h1>My Skills</h1>
+        
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2 class="skill-heading">My Skill Set</h2>
+        <div class="skills-list">
+            <p><strong>Java:</strong> Proficient in Java for developing robust and scalable applications. I have used Java for various projects, including backend development.</p>
+            <p><strong>Python:</strong> Experienced in Python for a range of applications, including web development, automation, and data analysis. I am familiar with libraries like Flask, Django, and Pandas.</p>
+            <p><strong>HTML:</strong> Skilled in HTML5 to create well-structured, responsive webpages. Familiar with semantic HTML elements and best practices for accessibility.</p>
+            <p><strong>CSS:</strong> Knowledgeable in CSS3 to style and layout webpages. I am familiar with Flexbox, Grid, and responsive design techniques for modern web pages.</p>
+            <p><strong>SQL:</strong> Basic understanding of SQL for creating, modifying, and querying databases. I am proficient in writing SQL queries and working with relational databases like MySQL.</p>
+        </div>
+<a href="sruthi.html" class="back-button">Back to Home</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Sruthi | All rights reserved</p>
+    </footer>
+</body>
+</html>

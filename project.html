@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Projects</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Ensure body takes up the full height of the page */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh; /* Ensure full viewport height */
+            background:  no-repeat center center/cover; /* Background image */
+            color: #333; /* Dark font color for contrast */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Ensure footer stays at the bottom */
+        }
+        
+        /* Navbar styles */
+        header {
+            background-color: #333;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            padding: 0;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #ff6600; /* Hover color */
+        }
+
+        /* Home Section */
+        #home {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            background-color: white; /* White background for contrast */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+            z-index: 1; /* Make sure text is above background image */
+        }
+
+        #home h1 {
+            font-weight: bold;
+            font-size: 36px;
+            margin: 0;
+            color: black; /* Font color set to black */
+        }
+
+        #home img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 5px solid black; /* Bold black outline */
+            background-color: white; /* White background */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Projects Section */
+        #projects {
+            background-color: #f4f4f9; /* Formal light background color */
+            padding: 40px;
+            margin-top: 20px;
+        }
+
+        .project-heading {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333; /* Dark color for formal style */
+            margin-bottom: 15px;
+        }
+
+        .project-description {
+            font-size: 18px;
+            color: #555; /* Slightly lighter text for description */
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <header>
+        <nav>
+            <ul>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home">
+        <h1>My Projects</h1>
+            </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div>
+            <h2 class="project-heading">Smart Voting through Facial Recognition using Machine Learning Algorithms</h2>
+            <p class="project-description">
+                This project aims to enhance the voting process by using facial recognition technology to ensure the authenticity of voters.
+                The system uses machine learning algorithms to analyze facial features, compare them with a database, and confirm the identity of the voter.
+                This approach minimizes fraud and increases the security of the voting process.
+            </p>
+        </div>
+        <div>
+            <h2 class="project-heading">Automatic Text Summarization using NLP</h2>
+            <p class="project-description">
+                This project utilizes Natural Language Processing (NLP) techniques to automatically summarize lengthy text documents into concise summaries.
+                The system uses text preprocessing methods, tokenization, and various NLP algorithms to understand the main points of the text and generate a meaningful summary.
+                This can be used for news articles, research papers, or any content that requires summarization.
+            </p>
+        </div>
+<a href="sruthi.html" class="back-button">Back to Home</a>
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Sruthi | All rights reserved</p>
+    </footer>
+</body>
+</html>
