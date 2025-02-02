@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Master - To-Do List</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        .task-container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .task-list {
+            margin-top: 20px;
+            list-style: none;
+            padding: 0;
+        }
+        .task-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f9f9f9;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+        .task-item.completed {
+            text-decoration: line-through;
+            background-color: #e0e0e0;
+        }
+        .task-item button {
+            background-color: red;
+            padding: 5px 10px;
+            font-size: 14px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+        }
+        .task-item button:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Task Master - To-Do List</h1>
+    </header>
+
+    <div class="task-container">
+        <h2>Your Tasks</h2>
+        <input type="text" id="taskInput" placeholder="Add a new task..." />
+        <button onclick="addTask()">Add Task</button>
+        <ul class="task-list" id="taskList"></ul>
+    </div>
+
+    <script>
+        // Load tasks from localStorage
+        window.onload = function() {
+            loadTasks();
+        };
+
+        // Function to add a task
+        function addTask() {
+            const taskInput = document.getElementById("taskInput");
+            const taskText = taskInput.value.trim();
+            
+            if (taskText === "") {
+                alert("Please enter a task!");
+                return;
+            }
+            
+            const task = {
+                id: new Date().getTime(),
+                text: taskText,
+                completed: false
+            };
+            
+            let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+            tasks.push(task);
+            localStorage.setItem("tasks", JSON.stringify(tasks));
+            
+            taskInput.value = ""; // Clear input field
+            loadTasks();
+        }
+
+        // Function to load tasks from localStorage and display them
+        function loadTasks() {
+            const taskList = document.getElementById("taskList");
+            taskList.innerHTML = ""; // Clear the list first
+
+            let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+            tasks.forEach(task => {
+                const taskElement = document.createElement("li");
+                taskElement.classList.add("task-item");
+                if (task.completed) taskElement.classList.add("completed");
+                taskElement.innerHTML = `
+                    <span onclick="toggleTask(${task.id})">${task.text}</span>
+                    <button onclick="deleteTask(${task.id})">Delete</button>
+                `;
+                taskList.appendChild(taskElement);
+            });
+        }
+
+        // Function to toggle the completed state of a task
+        function toggleTask(taskId) {
+            let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+            tasks = tasks.map(task => {
+                if (task.id === taskId) {
+                    task.completed = !task.completed;
+                }
+                return task;
+            });
+            localStorage.setItem("tasks", JSON.stringify(tasks));
+            loadTasks();
+        }
+
+        // Function to delete a task
+        function deleteTask(taskId) {
+            let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+            tasks = tasks.filter(task => task.id !== taskId);
+            localStorage.setItem("tasks", JSON.stringify(tasks));
+            loadTasks();
+        }
+    </script>
+
+</body>
+</html>
