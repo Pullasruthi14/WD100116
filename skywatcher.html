@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sky Weather Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1e1e2f;
+            colour: white;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            background: skyblue;
+            padding: 20px;
+            border-radius: 10px;
+            width: 50%;
+            margin: auto;
+            box-shadow: 0px 0px 10px gray;
+        }
+        select, button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+        }
+        .weather-info {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🌤️ Sky Weather Checker</h1>
+        <label for="stateSelect">Select a State:</label>
+        <select id="stateSelect">
+            <option value="" disabled selected>Select a state</option>
+        </select>
+        <button onclick="getWeather()">Check Weather</button>
+        
+        <div class="weather-info" id="weatherInfo"></div>
+    </div>
+
+    <script>
+        // Simulated Weather Data for 28 States
+        const statesWeather = {
+            "Andhra Pradesh": { temp: "32°C", humidity: "70%", wind: "15 km/h", sunrise: "06:15 AM", sunset: "06:30 PM" },
+            "Arunachal Pradesh": { temp: "20°C", humidity: "80%", wind: "10 km/h", sunrise: "05:10 AM", sunset: "04:50 PM" },
+            "Assam": { temp: "27°C", humidity: "75%", wind: "12 km/h", sunrise: "05:30 AM", sunset: "05:15 PM" },
+            "Bihar": { temp: "29°C", humidity: "60%", wind: "14 km/h", sunrise: "06:00 AM", sunset: "05:50 PM" },
+            "Chhattisgarh": { temp: "31°C", humidity: "65%", wind: "10 km/h", sunrise: "06:10 AM", sunset: "06:15 PM" },
+            "Goa": { temp: "30°C", humidity: "85%", wind: "20 km/h", sunrise: "06:20 AM", sunset: "06:45 PM" },
+            "Gujarat": { temp: "34°C", humidity: "50%", wind: "18 km/h", sunrise: "06:35 AM", sunset: "06:50 PM" },
+            "Haryana": { temp: "28°C", humidity: "55%", wind: "12 km/h", sunrise: "06:25 AM", sunset: "06:10 PM" },
+            "Himachal Pradesh": { temp: "18°C", humidity: "65%", wind: "10 km/h", sunrise: "06:40 AM", sunset: "06:00 PM" },
+            "Jharkhand": { temp: "30°C", humidity: "60%", wind: "14 km/h", sunrise: "06:05 AM", sunset: "05:55 PM" },
+            "Karnataka": { temp: "29°C", humidity: "68%", wind: "17 km/h", sunrise: "06:25 AM", sunset: "06:35 PM" },
+            "Kerala": { temp: "28°C", humidity: "80%", wind: "15 km/h", sunrise: "06:15 AM", sunset: "06:30 PM" },
+            "Madhya Pradesh": { temp: "32°C", humidity: "55%", wind: "16 km/h", sunrise: "06:20 AM", sunset: "06:25 PM" },
+            "Maharashtra": { temp: "30°C", humidity: "70%", wind: "18 km/h", sunrise: "06:30 AM", sunset: "06:40 PM" },
+            "Manipur": { temp: "25°C", humidity: "75%", wind: "10 km/h", sunrise: "05:40 AM", sunset: "05:30 PM" },
+            "Meghalaya": { temp: "22°C", humidity: "78%", wind: "12 km/h", sunrise: "05:35 AM", sunset: "05:20 PM" },
+            "Mizoram": { temp: "24°C", humidity: "76%", wind: "10 km/h", sunrise: "05:50 AM", sunset: "05:35 PM" },
+            "Nagaland": { temp: "23°C", humidity: "77%", wind: "10 km/h", sunrise: "05:45 AM", sunset: "05:25 PM" },
+            "Odisha": { temp: "31°C", humidity: "69%", wind: "14 km/h", sunrise: "06:00 AM", sunset: "05:50 PM" },
+            "Punjab": { temp: "27°C", humidity: "50%", wind: "14 km/h", sunrise: "06:20 AM", sunset: "06:00 PM" },
+            "Rajasthan": { temp: "35°C", humidity: "45%", wind: "22 km/h", sunrise: "06:40 AM", sunset: "07:00 PM" },
+            "Sikkim": { temp: "20°C", humidity: "80%", wind: "10 km/h", sunrise: "05:50 AM", sunset: "05:30 PM" },
+            "Tamil Nadu": { temp: "30°C", humidity: "78%", wind: "16 km/h", sunrise: "06:10 AM", sunset: "06:25 PM" },
+            "Telangana": { temp: "31°C", humidity: "72%", wind: "15 km/h", sunrise: "06:20 AM", sunset: "06:30 PM" },
+            "Tripura": { temp: "26°C", humidity: "74%", wind: "12 km/h", sunrise: "05:55 AM", sunset: "05:40 PM" },
+            "Uttar Pradesh": { temp: "28°C", humidity: "58%", wind: "13 km/h", sunrise: "06:10 AM", sunset: "06:05 PM" },
+            "Uttarakhand": { temp: "22°C", humidity: "60%", wind: "12 km/h", sunrise: "06:30 AM", sunset: "06:15 PM" },
+            "West Bengal": { temp: "29°C", humidity: "72%", wind: "14 km/h", sunrise: "06:00 AM", sunset: "05:55 PM" }
+        };
+
+        // Populate Dropdown
+        const stateSelect = document.getElementById("stateSelect");
+        Object.keys(statesWeather).forEach(state => {
+            let option = document.createElement("option");
+            option.value = state;
+            option.textContent = state;
+            stateSelect.appendChild(option);
+        });
+
+        // Function to Display Weather
+        function getWeather() {
+            let state = stateSelect.value;
+            if (state) {
+                let weather = statesWeather[state];
+                document.getElementById("weatherInfo").innerHTML = `
+                    <p><strong>🌡️Temperature:</strong> ${weather.temp}</p>
+                    <p><strong>💧Humidity:</strong> ${weather.humidity}</p>
+                    <p><strong>🌬️Wind Speed:</strong> ${weather.wind}</p>
+                    <p><strong>🌅 Sunrise:</strong> ${weather.sunrise}</p>
+                    <p><strong>🌇 Sunset:</strong> ${weather.sunset}</p>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>
